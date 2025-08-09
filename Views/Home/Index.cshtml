@@ -1,8 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<VideoFile>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Video Library</h1>
+
+    <div class="row">
+        @foreach (var video in Model)
+        {
+            <div class="col-lg-4">
+                <h5 class="">@video.FileName</h5>
+                <video class="video-js" controls preload="auto" width="640" height="360">
+                    <source src="/stream/@video.FilePath" type="video/mp4" />
+                </video>
+            </div>
+        }
+    </div>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
